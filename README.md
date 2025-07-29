@@ -1,6 +1,8 @@
 # Bon Voyage
 
 Bon Voyage is a Django-based web application designed to inspire and assist travelers in planning their journeys across the globe. With a focus on user experience, the platform offers curated travel suggestions, mood-based exploration, and AI-powered itinerary generation.
+<img width="704" height="386" alt="image" src="https://github.com/user-attachments/assets/01f6d09a-8f2e-4f0d-96de-67cea8990c10" />  
+ <img width="829" height="257" alt="image" src="https://github.com/user-attachments/assets/69cc0d2b-65d5-4489-b573-a9112c608c4b" />
 
 ## 🌍 Introduction
 Bon Voyage helps users discover destinations, explore by travel mood (Thrill, Cultural, Nature, Romantic), and generate personalized itineraries using generative AI. The project is built with Django and features a modern, responsive UI.
