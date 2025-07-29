@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Itinerary</title>
+</head>
+<body>
+    <h1>Your Itinerary</h1>
+    {% if itinerary.error %}
+        <p>Error: {{ itinerary.error }}</p>
+    {% else %}
+        <ul>
+            {% for day in itinerary %}
+                <li>Day {{ forloop.counter }}: {{ day.activity }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

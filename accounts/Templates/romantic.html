@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'accounts\style.css' %}" />
+    <title>Travel Countries</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, rgba(56, 107, 169, 0.9), rgba(140, 219, 255, 0.8)), url('https://images.unsplash.com/photo-1516546872185-8782531b5443?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            background-color: rgba(56, 107, 169, 0.9);
+            color: white;
+            padding: 10px 30px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .navbar img.logo {
+            margin-right: auto;
+            width: 50px;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-right: 20px;
+        }
+
+        .nav-list li:last-child {
+            margin-right: 0;
+        }
+
+        .nav-list li a {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-list li a:hover {
+            color: #ffd700;
+        }
+
+        .countries-section {
+            padding: 100px 40px;
+        }
+
+        .countries-title h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .countries-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .country-item {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+            width: 200px; /* Adjust width as needed */
+            height: 300px; /* Adjust height as needed */
+        }
+
+        .country-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .country-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .country-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        {% comment %} <img src="C:\Users\JHALAK\Pictures\LOGO.jpg" class="logo" alt="Logo" title="FirstFlight Travels"> {% endcomment %}
+        <img src="{% static 'accounts/BON_images/LOGO.jpg' %}" class="logo" alt="Logo" title="FirstFlight Travels">
+        <ul class="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#locations">Locations</a></li>
+            <li><a href="#mood">Mood</a></li>
+            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Countries Section -->
+    <section class="countries-section" id="country">
+        <div class="countries-title">
+            <h2>Explore Countries</h2>
+        </div>
+
+        <div class="countries-content">
+
+            <!-- India -->
+            <a href="#india" target="_blank">
+                <div class="country-item">
+                    <img src="{% static 'accounts/BON_images/india_flak.png' %}" alt="India Image">
+                    <div class="country-text">India</div>
+                </div>
+            </a>
+
+            <!-- France -->
+            <a href="#France" target="_blank">
+                <div class="country-item">
+                    <img src="{% static 'accounts/BON_images/France_flak.png' %}" alt="France Image">
+                    <div class="country-text">France</div>
+                </div>
+            </a>
+            
+            <!-- Maldives -->
+            <a href="#Maldives" target="_blank">
+                <div class="country-item">
+                    <img src="{% static 'accounts/BON_images/maldives_flak.png' %}" alt="Maldives Image">
+                    <div class="country-text">Maldives</div>
+                </div>
+            </a>
+
+            <!-- Italy -->
+            <a href="#Italy" target="_blank">
+                <div class="country-item">
+                    <img src="{% static 'accounts/BON_images/italy_flak.png' %}" alt="Italy Image">
+                    <div class="country-text">Italy</div>
+                </div>
+            </a>
+
+            <!-- Bali -->
+            <a href="#Bali" target="_blank">
+                <div class="country-item">
+                    <img src="{% static 'accounts/BON_images/bali_flak.jpg' %}" alt="Bali Image">
+                    <div class="country-text">Bali</div>
+                </div>
+            </a>
+
+            <!-- Greece -->
+            <a href="#Greece" target="_blank">
+                <div class="country-item">
+                    <img src="{% static 'accounts/BON_images/greece_flak.jpg' %}" alt="Greece Image">
+                    <div class="country-text">Greece</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Itinerary Form -->
+     <!-- Itinerary Form -->
+     <form method="POST" action="{% url 'create_itinerary' %}" style="padding: 20px; background-color: rgba(255, 255, 255, 0.8); border-radius: 10px; margin: 20px;">
+        {% csrf_token %}
+        <h3>Create Your Itinerary</h3>
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" name="destination" required>
+        <br>
+        <label for="days">Number of Days:</label>
+        <input type="number" id="days" name="days" required min="1">
+        <br>
+        <button type="submit">Generate Itinerary</button>
+    </form>
+
+    {% if itinerary %}
+    <div style="font-family: Arial, sans-serif; color: black; padding: 20px; background-color: #f9f9f9; border-radius: 10px;">
+        <h2 style="text-align: center;">{{ itinerary.title }}</h2>
+        <p><em>{{ itinerary.description }}</em></p>
+
+        {% for day in itinerary.days %}
+        <h3>{{ day.title }}</h3>
+        <ul>
+            {% for activity in day.activities %}
+            <li>{{ activity }}</li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+
+</html>

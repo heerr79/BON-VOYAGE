@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts\style.css' %}" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Places to Visit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgb(56, 107, 169);
+            color: white;
+            padding: 10px 30px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .navbar img.logo {
+            margin-right: auto;
+            width: 50px;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-right: 20px;
+        }
+
+        .nav-list li:last-child {
+            margin-right: 0;
+        }
+
+        .nav-list li a {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-list li a:hover {
+            color: #ffd700;
+        }
+
+        .container {
+            width: 90%;
+            height: 100%;
+            margin: auto;
+            padding-top: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #34a853;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: calc(33.33% * 7);
+        }
+
+        .carousel-card {
+            width: 33.33%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .carousel-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: fill;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .card-content p {
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .carousel-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #34a853;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .navigation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .prev, .next {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            font-size: 2rem;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <img src="{% static 'C:\Users\JHALAK\BONVOYAGE\BONVOYAGE\accounts\static\accounts\BON_images\LOGO.jpg' %}" class="logo" alt="Logo" title="FirstFlight Travels">
+        <ul class="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#locations">Locations</a></li>
+            <li><a href="#mood">Mood</a></li>
+            <li><a href="{% url 'about_us' %}">About Us</a></li>
+            <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Enjoy wonderful experiences in South Africa</h1>
+        <div class="carousel-container">
+            <!-- Carousel to display 3 cards at a time -->
+            <div class="carousel" id="carousel">
+                <div class="carousel-card">
+                    <img src="{% static 'C:\Users\JHALAK\Downloads\BonVoyage\BONVOYAGE\accounts\static\accounts\BON_images\sa1.jpg' %}" alt="Place 1">
+                    <div class="card-content">
+                        <h3>Drakensberg Mountains</h3>
+                        <p>Hike through the majestic Drakensberg Mountains.</p>
+                        <a href="#" class="carousel-btn" data-description="•	Adventure Activities: Hiking and trekking.
+                        •	Unique Experiences: Hike the iconic Drakensberg Mountains to explore the rugged beauty with their dramatic landscapes.
+                        •	Best Time to Visit: October to March for Table Mountain; May to September for the Drakensberg Mountains.
+                        ">Discover</a>
+                    </div>
+                </div>
+
+                <div class="carousel-card">
+                    <img src="{% static 'C:\Users\JHALAK\Downloads\BonVoyage\BONVOYAGE\accounts\static\accounts\BON_images\sa2.jpg' %}" alt="Place 2">
+                    <div class="card-content">
+                        <h3>Bloukrans Bridge</h3>
+                        <p> Experience the world’s highest commercial bungee jump at Bloukrans Bridge for an adrenaline-packed adventure.</p>
+                        <a href="#" class="carousel-btn" data-description="•	Adventure Activities: Bungee jumping.
+                        •	Unique Experiences: Jump from the worlds highest commercial bungee bridge (216 meters), offering an extreme adrenaline rush.
+                        •	Best Time to Visit: Year-round, but optimal during warmer months from October to April.
+                        ">Discover</a>
+                    </div>
+                </div>
+
+                <div class="carousel-card">
+                    <img src="{% static 'C:\Users\JHALAK\Downloads\BonVoyage\BONVOYAGE\accounts\static\accounts\BON_images\sa3.jpg' %}" alt="Place 3">
+                    <div class="card-content">
+                        <h3>Gansbaai, Mossel Bay</h3>
+                        <p>Dive into the deep and come face-to-face with great white sharks in Gansbaai or Mossel Bay.</p>
+                        <a href="#" class="carousel-btn" data-description="•	Adventure Activities: Shark cage diving.
+                        •	Unique Experiences: Get up close with great white sharks in Gansbaai or Mossel Bay for an unforgettable underwater thrill.
+                        •	Best Time to Visit: April to September, during shark season.
+                        ">Discover</a>
+                    </div>
+                </div>
+
+                <div class="carousel-card">
+                    <img src="{% static 'C:\Users\JHALAK\Downloads\BonVoyage\BONVOYAGE\accounts\static\accounts\BON_images\sa4.jpg' %}" alt="Place 4">
+                    <div class="card-content">
+                        <h3>Addo Elephant Park</h3>
+                        <p>Explore Addo Elephant Park to encounter elephants, lions, and diverse wildlife in their natural habitat.</p>
+                        <a href="#" class="carousel-btn" data-description="•	Adventure Activities: Wildlife safaris.
+                        •	Unique Experiences: Spot elephants, lions, and other wildlife in one of South Africa’s most celebrated national parks.
+                        •	Best Time to Visit: May to September for the best game viewing.
+                        ">Discover</a>
+                    </div>
+                </div>
+
+                <div class="carousel-card">
+                    <img src="{% static 'C:\Users\JHALAK\Downloads\BonVoyage\BONVOYAGE\accounts\static\accounts\BON_images\sa5.jpeg' %}" alt="Place 5">
+                    <div class="card-content">
+                        <h3>Cape Town (Signal Hill)</h3>
+                        <p>Glide above Cape Town from Signal Hill, with panoramic views of the city and coastline.</p>
+                        <a href="#" class="carousel-btn" data-description=" •	Adventure Activities: Paragliding.
+                        •	Unique Experiences: Soar over Cape Town from Signal Hill, enjoying stunning views of Table Mountain, the city, and the coastline.
+                        •	Best Time to Visit: November to March for ideal weather conditions.
+                         ">Discover</a>
+                    </div>
+                </div>
+
+                <div class="carousel-card">
+                    <img src="{% static 'C:\Users\JHALAK\Downloads\BonVoyage\BONVOYAGE\accounts\static\accounts\BON_images\sa6.jpg' %}" alt="Place 6">
+                    <div class="card-content">
+                        <h3>Jeffreys Bay, Muizenberg Beach</h3>
+                        <p>Surf the legendary waves of Jeffreys Bay or catch beginner-friendly swells at Muizenberg Beach.</p>
+                        <a href="#" class="carousel-btn" data-description="•	Adventure Activities: Surfing.
+                        •	Unique Experiences: Ride the legendary waves of Jeffreys Bay, one of the world’s best surfing spots, or learn to surf at Muizenberg Beach, ideal for beginners.
+                        •	Best Time to Visit: April to September for Jeffreys Bay; November to March for Muizenberg Beach.
+                         ">Discover</a>
+                    </div>
+                </div>
+
+                <div class="carousel-card">
+                    <img src="{% static 'C:\Users\JHALAK\Downloads\BonVoyage\BONVOYAGE\accounts\static\accounts\BON_images\sa7.png' %}" alt="Place 7">
+                    <div class="card-content">
+                        <h3>Kruger National Park</h3>
+                        <p>Discover the Big Five on a classic African safari in the renowned Kruger National Park.</p>
+                        <a href="#" class="carousel-btn" data-description="•	Adventure Activities: Wildlife safaris.
+                        •	Unique Experiences: Embark on a classic African safari to spot the Big Five (lion, leopard, elephant, rhino, and buffalo) in South Africa’s most famous park.
+                        •	Best Time to Visit: May to September for peak wildlife viewing.
+                        ">Discover</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation for the carousel -->
+            <span class="navigation prev" onclick="moveSlides(-1)">&#10094;</span>
+            <span class="navigation next" onclick="moveSlides(1)">&#10095;</span>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
+    <script>
+        let index = 0;
+        const carousel = document.getElementById('carousel');
+        const cards = document.getElementsByClassName('carousel-card');
+        const visibleItems = 3; // Number of visible items at a time
+
+        function moveSlides(n) {
+            const totalItems = cards.length;
+            const maxIndex = Math.ceil(totalItems / visibleItems) - 1;
+
+            index += n;
+            if (index < 0) index = maxIndex;  // Loop to last if going left from the first
+            if (index > maxIndex) index = 0;  // Loop to first if going right from the last
+
+            carousel.style.transform = 'translateX(' + (-index * 100 / visibleItems) + '%)'; // Move by a percentage based on visible items
+        }
+
+        // Add event listeners to all discover buttons
+        const discoverButtons = document.querySelectorAll('.carousel-btn');
+        discoverButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                const card = event.target.closest('.carousel-card');
+                const title = card.querySelector('h3').innerText;
+                const description = button.getAttribute('data-description'); // Get description from data attribute
+
+                // Set the modal title and description
+                document.getElementById('modal-title').innerText = title;
+                document.getElementById('modal-description').innerText = description;
+
+                // Display the modal
+                document.getElementById('modal').style.display = 'block';
+            });
+        });
+
+        // Close the modal when the close button is clicked
+        document.querySelector('.close-button').addEventListener('click', function() {
+            document.getElementById('modal').style.display = 'none';
+        });
+
+        // Close the modal when clicking outside of the modal content
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+
+</body>
+</html>

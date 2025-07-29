@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'accounts\style.css' %}" />
+    <title>Contact Us - Bon Voyage</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://example.com/your-background-image.jpg') no-repeat center center fixed; /* Background image */
+            background-size: cover; /* Cover the entire screen */
+            overflow: hidden; /* Remove scrollbar */
+            color: #000000; /* Default text color */
+            background-color: rgb(147, 217, 255);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            background-color: rgba(56, 107, 169, 0.9);
+            color: white;
+            padding: 10px 30px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .navbar img.logo {
+            margin-right: auto;
+            width: 50px;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-right: 20px;
+        }
+
+        .nav-list li:last-child {
+            margin-right: 0;
+        }
+
+        .nav-list li a {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-list li a:hover {
+            color: #ffd700;
+        }
+
+        /* Contact Us Section Styles */
+        section {
+            height: 100vh; /* Full height to fill the screen */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+            text-align: center; /* Center text */
+            padding: 20px; /* Padding around the section */
+            margin-top: 0px; /* **Changed from 30px to 10px** */
+        }
+
+        h2 {
+            margin-bottom: 10px; /* Reduced margin */
+            font-size: 28px;
+            color: #333;
+            line-height: 1.2; /* Reduced line height */
+        }
+
+        p {
+            line-height: 1.2; /* Reduced line height */
+            font-size: 16px;
+            margin-bottom: 10px; /* Reduced margin */
+        }
+
+        h3 {
+            margin: 10px 0; /* Margin for subheadings */
+            font-size: 24px;
+            color: #333;
+            line-height: 1.2; /* Reduced line height */
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            display: flex;
+            flex-direction: column; /* Stack form elements vertically */
+            align-items: center; /* Center form elements */
+            margin: 20px 0;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 300px; /* Fixed width for inputs */
+            margin: 10px 0; /* Space between fields */
+            padding: 10px; /* Padding for inputs */
+            border: 1px solid #ccc; /* Border style */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        .contact-form button {
+            background-color: rgba(56, 107, 169, 0.9);
+            color: white;
+            border: none;
+            padding: 10px 20px; /* Button padding */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor */
+            transition: background-color 0.3s ease; /* Transition for hover effect */
+        }
+
+        .contact-form button:hover {
+            background-color: #ffd700; /* Change color on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <img src="{% static 'accounts/BON_images/LOGO.jpg' %}" class="logo" alt="Logo" title="BON VOYAGE">
+        <ul class="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#locations">Locations</a></li>
+            <li><a href="#mood">Mood</a></li>
+            <li><a href="{% url 'about_us' %}">About Us</a></li>
+            <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        
+        <p>We would love to hear from you! Whether you have a question, feedback, or just want to say hello, feel free to reach out.</p>
+        
+        <h3>Get in Touch</h3>
+        <div class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </div>
+    </section>
+</body>
+</html>
